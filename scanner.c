@@ -1,4 +1,3 @@
-// scanner.c
 #include "scanner.h"
 #include "config.h"
 #include "counter.h"
@@ -45,6 +44,12 @@ void scan_dir(const char *path) {
     } else if (S_ISREG(st.st_mode)) {
       int line_count = count_lines(full_path);
       const char *ext = get_extension(full_path);
+      if (strcmp(ext, ".o") == 0 || strcmp(ext, ".so") == 0 ||
+          strcmp(ext, ".a") == 0 || strcmp(ext, ".exe") == 0 ||
+          strcmp(ext, ".class") == 0 || strcmp(ext, ".out") == 0 ||
+          strcmp(ext, ".bin") == 0) {
+        continue;
+      }
       update_counts(ext, line_count);
     }
   }

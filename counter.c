@@ -1,4 +1,3 @@
-// counter.c
 #include "counter.h"
 #include <stdio.h>
 #include <string.h>
