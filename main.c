@@ -31,8 +31,6 @@ int main(int argc, char *argv[]) {
 
   scan_dir(argv[1]);
 
-  printf("\n--- Summary ---\n");
-
   for (int i = 0; i < ext_count_size - 1; i++) {
     for (int j = 0; j < ext_count_size - i - 1; j++) {
       if (ext_counts[j].lines < ext_counts[j + 1].lines) {
@@ -42,22 +40,21 @@ int main(int argc, char *argv[]) {
       }
     }
   }
-  for (int i = 0; i < ext_count_size; i++) {
-    printf("%s: %d lines\n", ext_counts[i].ext, ext_counts[i].lines);
-  }
 
   int total = 0;
+
   for (int i = 0; i < ext_count_size; i++) {
     total += ext_counts[i].lines;
   }
-  printf("Total: %d lines\n", total);
 
-  printf("\n--- Breakdown by Percentage ---\n");
+  printf("\n--- Line Count Summary ---\n");
   for (int i = 0; i < ext_count_size; i++) {
     float percent = (ext_counts[i].lines / (float)total) * 100.0f;
     printf("%s: %d lines (%.1f%%)\n", ext_counts[i].ext, ext_counts[i].lines,
            percent);
   }
+
+  printf("Total: %d lines\n", total);
 
   return 0;
 }
